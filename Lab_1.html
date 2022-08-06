@@ -439,6 +439,129 @@ result_students</code></pre>
 ## Mike Jones   65.4       85.1       92.3   96.8         1               339.6
 ## Tom Hill     70.4       88.2       95.2   90.7         1               344.5</code></pre>
 </div>
+<div id="seleccionando-elementos-de-una-matriz" class="section level2">
+<h2>4. Seleccionando elementos de una matriz</h2>
+<p>4.1. De la matriz result_students seleccione la fila 1, 3 y 5 y las
+columnas 2 y 4. Almacene el resultado en una variable de nombre
+selected_elements e imprima el resultado.</p>
+<pre class="r"><code>selected_elements &lt;- result_students[c(1,2,3),c(2,4)]
+selected_elements</code></pre>
+<pre><code>##              Accounting Ethics
+## Lily Brown         62.3   77.6
+## Davis Moore        87.9   72.4
+## Susan Taylor       67.8   71.2</code></pre>
+</div>
+<div id="data-frames" class="section level2">
+<h2>5. Data frames</h2>
+<p>5.1. Construya un data frame de nombre students_grades_df utilizando
+la matriz result_students como parámetro.</p>
+<pre class="r"><code>students_grades_df &lt;- data.frame(result_students)
+students_grades_df</code></pre>
+<pre><code>##               TIC Accounting Psychology Ethics Legal_age total_grade_student
+## Lily Brown   50.4       62.3       92.1   77.6         1               282.4
+## Davis Moore  41.7       87.9       75.3   72.4         0               277.3
+## Susan Taylor 30.3       67.8       69.3   71.2         0               238.6
+## Mike Jones   65.4       85.1       92.3   96.8         1               339.6
+## Tom Hill     70.4       88.2       95.2   90.7         1               344.5</code></pre>
+<p>5.2. Utilice la función subset en students_grades_df para filtrar por
+la siguiente condición: Que la columna Accounting sea mayor a 80 y que
+Legal_age sea verdadero.</p>
+<pre class="r"><code>subset (students_grades_df, students_grades_df$Accounting&gt; 80 &amp; students_grades_df$Legal_age == TRUE )</code></pre>
+<pre><code>##             TIC Accounting Psychology Ethics Legal_age total_grade_student
+## Mike Jones 65.4       85.1       92.3   96.8         1               339.6
+## Tom Hill   70.4       88.2       95.2   90.7         1               344.5</code></pre>
+</div>
+<div id="funciones-condicionales-y-bucles" class="section level2">
+<h2>6. Funciones, Condicionales y Bucles</h2>
+<p>6.1. Construya una función de nombre students_projection que recorra
+la matriz result_students.</p>
+<p>6.2. Al recorrer filas y columnas obtendrá el valor de la nota que se
+encuentra en cada celda de la matriz, con este valor aplique las
+siguientes condiciones para imprimir un mensaje:</p>
+<p>6.2.1. Si la nota es menor o igual a 45 imprima “Student at risk”</p>
+<p>6.2.2. Si la nota es mayor a 45 y menor a 61 imprima “Student may be
+approved”</p>
+<p>6.2.3. Si la nota es mayor o igual a 61 imprima “Student
+approved”</p>
+<p>6.3. Pruebe la función haciendo un llamado a la misma.</p>
+<pre class="r"><code>students_projection &lt;- function(mymatrix, cols=4){
+  for (i in 1:nrow(mymatrix)){
+    print(paste(&quot;projection for: &quot;, rownames(mymatrix)[i]))
+    for (j in 1:ncol(mymatrix)){
+       # toma en cuenta solo las primeras 4 colimas
+       if(j &lt;= cols){
+        print(paste(&quot;subject: &quot;,colnames(mymatrix)[j]))
+        if(mymatrix[i,j]&lt;=45) {
+          print(&quot;Student at risk&quot;)
+        }
+        else if(mymatrix[i,j]&gt;45 &amp; mymatrix[i,j]&lt;61){
+          print(&quot;Student may be approved&quot;)
+        }
+        else if(mymatrix[i,j]&gt;=61){
+          print(&quot;Student approved&quot;)
+        }
+      }
+     
+    }
+  }
+}
+students_projection(result_students)</code></pre>
+<pre><code>## [1] &quot;projection for:  Lily Brown&quot;
+## [1] &quot;subject:  TIC&quot;
+## [1] &quot;Student may be approved&quot;
+## [1] &quot;subject:  Accounting&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Psychology&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Ethics&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;projection for:  Davis Moore&quot;
+## [1] &quot;subject:  TIC&quot;
+## [1] &quot;Student at risk&quot;
+## [1] &quot;subject:  Accounting&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Psychology&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Ethics&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;projection for:  Susan Taylor&quot;
+## [1] &quot;subject:  TIC&quot;
+## [1] &quot;Student at risk&quot;
+## [1] &quot;subject:  Accounting&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Psychology&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Ethics&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;projection for:  Mike Jones&quot;
+## [1] &quot;subject:  TIC&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Accounting&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Psychology&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Ethics&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;projection for:  Tom Hill&quot;
+## [1] &quot;subject:  TIC&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Accounting&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Psychology&quot;
+## [1] &quot;Student approved&quot;
+## [1] &quot;subject:  Ethics&quot;
+## [1] &quot;Student approved&quot;</code></pre>
+</div>
+<div id="data-frames-y-lapply" class="section level2">
+<h2>7. Data frames y lapply</h2>
+<p>7.1. Construya la función index_education que reciba un parámetro de
+nombre grade. La función debe operar la siguiente fórmula: 𝑖𝑛𝑑𝑒𝑥
+𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛 = 1 + (𝑔𝑟𝑎𝑑𝑒/100) 2 7.2. Utilice students_grades_df
+seleccionando todas las filas y solamente las primeras 4 columnas, luego
+asigne el resultado en all_students_grade.</p>
+<p>7.3. Utilice lapply pasando de parámetros all_students_grade y la
+función index_education.</p>
+</div>
 </div>
 
 
