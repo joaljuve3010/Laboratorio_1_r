@@ -1,11 +1,16 @@
 # laboratorio #1
+**Jonnathan Alejandro Juárez Velásquez - 999007826**
 
 Se cuentan con registros de las notas de 5 estudiantes:
 
 S1 50.4 62.3 92.1 77.6 TRUE
+
 S2 41.7 87.9 75.3 72.4 FALSE
+
 S3 30.3 67.8 69.3 71.2 FALSE
+
 S4 65.4 85.1 92.3 96.8 TRUE
+
 S5 70.4 88.2 95.2 90.7 TRUE
 
 ## 1. Vectores y matrices
@@ -129,11 +134,41 @@ students_projection(result_students)
 ## 7. Data frames y lapply
 7.1. Construya la función index_education que reciba un parámetro de nombre grade.
 La función debe operar la siguiente fórmula:
-𝑖𝑛𝑑𝑒𝑥 𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛 = 1 + (𝑔𝑟𝑎𝑑𝑒/100)
-2
+𝑖𝑛𝑑𝑒𝑥 𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛 = (1 + (𝑔𝑟𝑎𝑑𝑒/100))/2
+```{r}
+index_education <- function(x){
+  return((1+(x/100))/2)
+}
+# example
+index_education(70)
+```
+
 7.2. Utilice students_grades_df seleccionando todas las filas y solamente las primeras
 4 columnas, luego asigne el resultado en all_students_grade.
+```{r}
+all_students_grade <- students_grades_df[1:4]
+all_students_grade
+```
 
 7.3. Utilice lapply pasando de parámetros all_students_grade y la función
 index_education.
+```{r}
+lapply(all_students_grade, index_education)
+```
+```{r}
+# EXTRA una version mas comprendible
+sapply(all_students_grade, index_education)
+```
+
+## 8. Math utilities
+8.1. Utilice students_grades_df y obtenga el promedio de las 4 asignaturas luego
+asigne los resultados en un vector de nombre score_mean.
+```{r}
+score_mean <- c(mean(students_grades_df$TIC),
+                mean(students_grades_df$Accounting),
+                mean(students_grades_df$Psychology ),
+                mean(students_grades_df$Ethics))
+names(score_mean) <-c ("TIC", "Accounting", "Psychology", "Ethics")
+score_mean
+```
 

@@ -367,10 +367,13 @@ pre code {
 
 <div id="laboratorio-1" class="section level1">
 <h1>laboratorio #1</h1>
+<p><strong>Jonnathan Alejandro Juárez Velásquez - 999007826</strong></p>
 <p>Se cuentan con registros de las notas de 5 estudiantes:</p>
-<p>S1 50.4 62.3 92.1 77.6 TRUE S2 41.7 87.9 75.3 72.4 FALSE S3 30.3 67.8
-69.3 71.2 FALSE S4 65.4 85.1 92.3 96.8 TRUE S5 70.4 88.2 95.2 90.7
-TRUE</p>
+<p>S1 50.4 62.3 92.1 77.6 TRUE</p>
+<p>S2 41.7 87.9 75.3 72.4 FALSE</p>
+<p>S3 30.3 67.8 69.3 71.2 FALSE</p>
+<p>S4 65.4 85.1 92.3 96.8 TRUE</p>
+<p>S5 70.4 88.2 95.2 90.7 TRUE</p>
 <div id="vectores-y-matrices" class="section level2">
 <h2>1. Vectores y matrices</h2>
 <p>1.1. Cree un vector por cada estudiante que almacene los 5
@@ -556,11 +559,60 @@ students_projection(result_students)</code></pre>
 <h2>7. Data frames y lapply</h2>
 <p>7.1. Construya la función index_education que reciba un parámetro de
 nombre grade. La función debe operar la siguiente fórmula: 𝑖𝑛𝑑𝑒𝑥
-𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛 = 1 + (𝑔𝑟𝑎𝑑𝑒/100) 2 7.2. Utilice students_grades_df
-seleccionando todas las filas y solamente las primeras 4 columnas, luego
-asigne el resultado en all_students_grade.</p>
+𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛 = (1 + (𝑔𝑟𝑎𝑑𝑒/100))/2</p>
+<pre class="r"><code>index_education &lt;- function(x){
+  return((1+(x/100))/2)
+}
+# example
+index_education(70)</code></pre>
+<pre><code>## [1] 0.85</code></pre>
+<p>7.2. Utilice students_grades_df seleccionando todas las filas y
+solamente las primeras 4 columnas, luego asigne el resultado en
+all_students_grade.</p>
+<pre class="r"><code>all_students_grade &lt;- students_grades_df[1:4]
+all_students_grade</code></pre>
+<pre><code>##               TIC Accounting Psychology Ethics
+## Lily Brown   50.4       62.3       92.1   77.6
+## Davis Moore  41.7       87.9       75.3   72.4
+## Susan Taylor 30.3       67.8       69.3   71.2
+## Mike Jones   65.4       85.1       92.3   96.8
+## Tom Hill     70.4       88.2       95.2   90.7</code></pre>
 <p>7.3. Utilice lapply pasando de parámetros all_students_grade y la
 función index_education.</p>
+<pre class="r"><code>lapply(all_students_grade, index_education)</code></pre>
+<pre><code>## $TIC
+## [1] 0.7520 0.7085 0.6515 0.8270 0.8520
+## 
+## $Accounting
+## [1] 0.8115 0.9395 0.8390 0.9255 0.9410
+## 
+## $Psychology
+## [1] 0.9605 0.8765 0.8465 0.9615 0.9760
+## 
+## $Ethics
+## [1] 0.8880 0.8620 0.8560 0.9840 0.9535</code></pre>
+<pre class="r"><code># EXTRA una version mas comprendible
+sapply(all_students_grade, index_education)</code></pre>
+<pre><code>##         TIC Accounting Psychology Ethics
+## [1,] 0.7520     0.8115     0.9605 0.8880
+## [2,] 0.7085     0.9395     0.8765 0.8620
+## [3,] 0.6515     0.8390     0.8465 0.8560
+## [4,] 0.8270     0.9255     0.9615 0.9840
+## [5,] 0.8520     0.9410     0.9760 0.9535</code></pre>
+</div>
+<div id="math-utilities" class="section level2">
+<h2>8. Math utilities</h2>
+<p>8.1. Utilice students_grades_df y obtenga el promedio de las 4
+asignaturas luego asigne los resultados en un vector de nombre
+score_mean.</p>
+<pre class="r"><code>score_mean &lt;- c(mean(students_grades_df$TIC),
+                mean(students_grades_df$Accounting),
+                mean(students_grades_df$Psychology ),
+                mean(students_grades_df$Ethics))
+names(score_mean) &lt;-c (&quot;TIC&quot;, &quot;Accounting&quot;, &quot;Psychology&quot;, &quot;Ethics&quot;)
+score_mean</code></pre>
+<pre><code>##        TIC Accounting Psychology     Ethics 
+##      51.64      78.26      84.84      81.74</code></pre>
 </div>
 </div>
 
