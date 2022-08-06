@@ -389,8 +389,6 @@ students_vector</code></pre>
 ## [16] 65.4 85.1 92.3 96.8  1.0 70.4 88.2 95.2 90.7  1.0</code></pre>
 <p>1.3 Construya una matriz de nombre students_matrix que reciba como
 parámetro students_vector</p>
-<pre class="r"><code>?matrix</code></pre>
-<pre><code>## starting httpd help server ... done</code></pre>
 <pre class="r"><code>students_matrix &lt;- matrix(students_vector, nrow = 5, byrow = TRUE)
 students_matrix</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
@@ -399,6 +397,28 @@ students_matrix</code></pre>
 ## [3,] 30.3 67.8 69.3 71.2    0
 ## [4,] 65.4 85.1 92.3 96.8    1
 ## [5,] 70.4 88.2 95.2 90.7    1</code></pre>
+</div>
+<div id="nombrado-de-una-matriz" class="section level2">
+<h2>2. Nombrado de una matriz</h2>
+<p>2.1. Cree los vectores name_students y name_courses_legal_age con los
+siguientes valores:</p>
+<pre class="r"><code>name_students &lt;- c(&quot;Lily Brown&quot;, &quot;Davis Moore&quot;,&quot;Susan Taylor&quot;, &quot;Mike Jones&quot;,&quot;Tom Hill&quot; )
+name_courses_legal_age &lt;-c (&quot;TIC&quot;, &quot;Accounting&quot;, &quot;Psychology&quot;, &quot;Ethics&quot;,&quot;Legal_age&quot;)</code></pre>
+<p>2.2. Utilice estos vectores para crear el nombrado de filas y
+columnas de la matriz students_vector. En las filas deben aparecer los
+estudiantes y en columnas los cursos y si es mayor de edad.</p>
+<pre class="r"><code>row.names(students_matrix) &lt;- name_students
+colnames(students_matrix) &lt;- name_courses_legal_age
+students_matrix</code></pre>
+<pre><code>##               TIC Accounting Psychology Ethics Legal_age
+## Lily Brown   50.4       62.3       92.1   77.6         1
+## Davis Moore  41.7       87.9       75.3   72.4         0
+## Susan Taylor 30.3       67.8       69.3   71.2         0
+## Mike Jones   65.4       85.1       92.3   96.8         1
+## Tom Hill     70.4       88.2       95.2   90.7         1</code></pre>
+</div>
+<div id="nombrado-de-una-matriz-1" class="section level2">
+<h2>3. Nombrado de una matriz</h2>
 </div>
 </div>
 
