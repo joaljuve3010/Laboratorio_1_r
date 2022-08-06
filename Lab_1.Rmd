@@ -49,7 +49,24 @@ colnames(students_matrix) <- name_courses_legal_age
 students_matrix
 ```
 
-## 3. Nombrado de una matriz
+## 3. rowSums, cbind
+
+3.1. Cree el vector total_grade_student que contenga la sumatoria de todas las notas por
+cada estudiante, utilice la función rowSum para hacerlo, tome en cuenta que solo debe
+considerar las primera 4 columnas, porque la última corresponde a la mayoría de
+edad.
+```{r}
+total_grade_student <- rowSums (students_matrix[,c("TIC", "Accounting", "Psychology", "Ethics")])
+total_grade_student
+
+```
+
+3.2. Pegue el vector total_grade_student con la matriz students_matrix por medio de la
+función cbind y asigne el resultado a una nueva matriz de nombre result_students.
+```{r}
+result_students <- cbind(students_matrix,total_grade_student)
+result_students
+```
 
 
 

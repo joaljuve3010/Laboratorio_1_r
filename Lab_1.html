@@ -417,8 +417,27 @@ students_matrix</code></pre>
 ## Mike Jones   65.4       85.1       92.3   96.8         1
 ## Tom Hill     70.4       88.2       95.2   90.7         1</code></pre>
 </div>
-<div id="nombrado-de-una-matriz-1" class="section level2">
-<h2>3. Nombrado de una matriz</h2>
+<div id="rowsums-cbind" class="section level2">
+<h2>3. rowSums, cbind</h2>
+<p>3.1. Cree el vector total_grade_student que contenga la sumatoria de
+todas las notas por cada estudiante, utilice la función rowSum para
+hacerlo, tome en cuenta que solo debe considerar las primera 4 columnas,
+porque la última corresponde a la mayoría de edad.</p>
+<pre class="r"><code>total_grade_student &lt;- rowSums (students_matrix[,c(&quot;TIC&quot;, &quot;Accounting&quot;, &quot;Psychology&quot;, &quot;Ethics&quot;)])
+total_grade_student</code></pre>
+<pre><code>##   Lily Brown  Davis Moore Susan Taylor   Mike Jones     Tom Hill 
+##        282.4        277.3        238.6        339.6        344.5</code></pre>
+<p>3.2. Pegue el vector total_grade_student con la matriz
+students_matrix por medio de la función cbind y asigne el resultado a
+una nueva matriz de nombre result_students.</p>
+<pre class="r"><code>result_students &lt;- cbind(students_matrix,total_grade_student)
+result_students</code></pre>
+<pre><code>##               TIC Accounting Psychology Ethics Legal_age total_grade_student
+## Lily Brown   50.4       62.3       92.1   77.6         1               282.4
+## Davis Moore  41.7       87.9       75.3   72.4         0               277.3
+## Susan Taylor 30.3       67.8       69.3   71.2         0               238.6
+## Mike Jones   65.4       85.1       92.3   96.8         1               339.6
+## Tom Hill     70.4       88.2       95.2   90.7         1               344.5</code></pre>
 </div>
 </div>
 
